@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="Integral.js"></script>
+    <script src="Paint.js"></script>
+    <script src="FindRoots.js"></script>
+    <script src="Splines.js"></script>
+    <meta charset="UTF-8">
+    <title>Практика</title>
+</head>
+<body>
+
+    <div id="background">
+        <div id="header"></div>
+        <div id="main">
+            <h1>Приближенное вычисление корней функции</h1>
+            <form action="#" name="findRoots" id = "findRoots">
+                <label>inf = <input type="text" name="inf" size="1" pattern="\-?\d+(,\d+)?"></label>
+                <label>sup = <input type="text" name="sup" size="1" pattern="\-?\d+(,\d+)?"></label>
+                <!--<label>eps = <input type="text" name="eps" value=""></label>-->
+                <p style="margin-top: 10px;">y = <input type="text" name="y" size="40" style="margin-bottom: 5px;"></p>
+                <p style="margin-bottom: 10px;">
+                    <input type="button" value="Найти" id="btnFindRoots" name="btnFindRoots"
+                           onclick='
+                           document.findRoots.result.value =
+                            findRoot(document.findRoots.y.value, document.findRoots.inf.value, document.findRoots.sup.value, 0.001);
+                            draw_graphFR(bringStr(document.findRoots.y.value), document.findRoots.inf.value, document.findRoots.sup.value, Number(document.scaleForm.scale.value), 200, 200);
+                            document.scaleForm.lastBtn.value = 1;
+                            '>
+                </p>
+                <p><label>result = <input type="text" name="result" readonly></label></p>
+            </form>
+            <h1>Приближенное нахождение интеграла</h1>
+            <form action="#" name="integralForm" id="integralForm">
+                <label>b = <input type="text" name="b" size="1" pattern="\d+(,\d+)?"></label>
+                <p style="margin-bottom: 0;"><img src="images/integr.png" style="width: 40px;">
+                    <input type="text" name="inputFunc" size="40" style="margin-bottom: 5px;"> dx</p>
+                <label>a = <input type="text" name="a" size="1" pattern="\d+(,\d+)?"></label>
+                <p style="margin-top: 10px;: ">
+                    <input type="button" value="Найти" name="btnIntegral"
+                           onclick='document.integralForm.res.value = findDefiniteIntegral(document.integralForm.inputFunc.value, document.integralForm.a.value, document.integralForm.b.value );
+                           draw_graph(bringStr(document.integralForm.inputFunc.value), document.integralForm.a.value, document.integralForm.b.value, Number(document.scaleForm.scale.value), 200, 200 );
+                           document.scaleForm.lastBtn.value = 2;
+                           '></p>
+                <p><label>result = <input type="text" name="res" readonly></label></p>
+            </form>
+
+            <canvas id ="graph" class="graphStyle" width="500" height="500"></canvas>
+            <form action="#" name="scaleForm" id="scaleForm" class="graphStyle">
+                <input type="number" name="lastBtn" value="0" style="visibility: hidden;">
+                <br>
+                <label>scale = <input type="number" name="scale" value="25"
+                                      onchange="
+                                      if(document.scaleForm.lastBtn.value==0){
+                                        draw_grid(Number(document.scaleForm.scale.value), 200, 200);
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==1){
+                                        document.findRoots.btnFindRoots.onclick();
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==2){
+                                        document.integralForm.btnIntegral.onclick();
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==3){
+                                        document.splines.btnSplines.onclick();
+                                      }
+                                        "></label>
+            </form>
+
+            <h1>Интерполирование функции кубическими сплайнами</h1>
+            <form action="#" name="splines" id="splines">
+                <label>x[ ] = <input type="text" name="xArr" size="50" pattern="\d+(,\d+)?"></label>
+                <br>
+                <div style="margin-top: 10px;">
+                <label>y[ ] = <input type="text" name="yArr" size="50" pattern="\d+(,\d+)?"></label>
+                </div>
+                <label>valueX = <input type="text" name="valueX" size="1" pattern="\d+(,\d+)?"></label>
+                <p style="margin-top: 10px;: ">
+                    <input type="button" value="Найти" name="btnSplines"
+                           onclick='
+                           x = eval("["+document.splines.xArr.value+"]");
+                           y = eval("["+document.splines.yArr.value+"]");;
+                           document.splines.res.value = Interpolate(document.splines.valueX.value, x, y);
+                           draw_graphInterpolate(x, y, Number(document.scaleForm.scale.value), 200, 200);
+                           document.scaleForm.lastBtn.value = 3;
+                           '></p>
+                <p><label>result = <input type="text" name="res" readonly></label></p>
+            </form>
+            <script>draw_grid(Number(document.scaleForm.scale.value), 200, 200);</script>
+    </div>
+        </div>
+</body>
+</html>

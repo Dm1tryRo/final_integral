@@ -1,0 +1,36 @@
+@font-face {
+    font-family: TT Drugs; /* Гарнитура шрифта */
+    src: url(fonts/TTDrugs-Thin.otf); /* Путь к файлу со шрифтом */
+}
+body{
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+    margin: 0;
+}
+p{
+    margin-top: 0;
+}
+h1{
+    font-size: 24pt;
+    font-weight: 400;
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align:  center;
+}
+#header{
+    height: 70px;
+}
+#main{
+    width: 70%;
+    margin: 0 auto;
+    background: white;
+}
+#background{
+    background: url("images/background.jpg");
+}
+#integralForm, #splines, #findRoots{
+    width: 500px;
+    margin: 30px 0 0 10%;
+}
+.graphStyle{
+    margin: 20px 0 0 25%;
+}

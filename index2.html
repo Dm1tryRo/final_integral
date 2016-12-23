@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style2.css">
+    <script src="Integral.js"></script>
+    <script src="Paint.js"></script>
+    <script src="FindRoots.js"></script>
+    <script src="Splines.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class = "background">
+    <div class="main">
+        <div class="navigate">
+            <div id="checkedBtn"></div>
+            <div id="left">
+                <input type="button" id="intBtn" class="btn" value="Определенный интеграл" onclick="
+                document.getElementById('checkedBtn').classList.remove('animatedCenter');
+                document.getElementById('checkedBtn').classList.remove('animatedRight');
+                document.getElementById('checkedBtn').classList.add('animatedLeft');
+                document.getElementById('findRoots').classList.remove('checked');
+                document.getElementById('findRoots').classList.add('unchecked');
+                document.getElementById('splines').classList.remove('checked');
+                document.getElementById('splines').classList.add('unchecked');
+                document.getElementById('integral').classList.remove('unchecked');
+                document.getElementById('integral').classList.add('checked');
+                this.classList.remove('unchecked');
+                this.classList.add('checked');
+                document.getElementById('rootBtn').classList.remove('checked');
+                document.getElementById('interpolBtn').classList.remove('checked');
+                document.getElementById('rootBtn').classList.add('unchecked');
+                document.getElementById('interpolBtn').classList.add('unchecked');
+                "/>
+            </div>
+            <div id="center">
+                <input type="button" id="rootBtn" class="btn" value="Найти корни" onclick="
+                document.getElementById('checkedBtn').classList.remove('animatedRight');
+                document.getElementById('checkedBtn').classList.remove('animatedLeft');
+                document.getElementById('checkedBtn').classList.add('animatedCenter');
+                document.getElementById('integral').classList.remove('checked');
+                document.getElementById('integral').classList.add('unchecked');
+                document.getElementById('splines').classList.remove('checked');
+                document.getElementById('splines').classList.add('unchecked');
+                document.getElementById('findRoots').classList.remove('unchecked');
+                document.getElementById('findRoots').classList.add('checked');
+                this.classList.remove('unchecked');
+                this.classList.add('checked');
+                document.getElementById('intBtn').classList.remove('checked');
+                document.getElementById('interpolBtn').classList.remove('checked');
+                document.getElementById('intBtn').classList.add('unchecked');
+                document.getElementById('interpolBtn').classList.add('unchecked');
+                "
+                        />
+                </div>
+            <div id="right">
+                <input type="button" id="interpolBtn" class="btn" value="Интерполирование" onclick="
+                document.getElementById('checkedBtn').classList.remove('animatedCenter');
+                document.getElementById('checkedBtn').classList.remove('animatedLeft');
+                document.getElementById('checkedBtn').classList.add('animatedRight');
+                document.getElementById('integral').classList.remove('checked');
+                document.getElementById('integral').classList.add('unchecked');
+                document.getElementById('findRoots').classList.remove('checked');
+                document.getElementById('findRoots').classList.add('unchecked');
+                document.getElementById('splines').classList.remove('unchecked');
+                document.getElementById('splines').classList.add('checked');
+                this.classList.remove('unchecked');
+                this.classList.add('checked');
+                document.getElementById('rootBtn').classList.remove('checked');
+                document.getElementById('intBtn').classList.remove('checked');
+                document.getElementById('rootBtn').classList.add('unchecked');
+                document.getElementById('intBtn').classList.add('unchecked');
+                "/>
+
+            </div>
+
+        </div>
+        <div id="integral">
+            <form action="#" name="integralForm" id="integralForm">
+            <input type="text" name="b" size="2" pattern="\d+(,\d+)?" class="field_ab">
+            <div style="margin: 5px 0;"><img src="images/integral_red.png" style="width: 60px;">
+                <input type="text" name="inputFunc" size="20" class="field"> dx</div>
+            <input type="text" name="a" size="2" pattern="\d+(,\d+)?" class="field_ab">
+            <p><label>Epsilon = <input type="text" name="eps" size="4" patter="\d+(,\d+)?" class="field_ab"></label></p>
+                <p style="margin-left: 15px;">
+
+                    <br>
+                <input type="button" value="Найти" name="btnIntegral" class="btnCalculate" size="20"
+                       onclick='document.integralForm.res.value = findDefiniteIntegral(document.integralForm.inputFunc.value, document.integralForm.a.value, document.integralForm.b.value, document.integralForm.eps.value );
+                           draw_graph(bringStr(document.integralForm.inputFunc.value), document.integralForm.a.value, document.integralForm.b.value, Number(document.scaleForm.scale.value),
+                            Number(document.scaleForm.centerX.value), Number(document.scaleForm.centerY.value) );
+                           document.scaleForm.lastBtn.value = 2;
+                           '>
+                <input type="text" name="res" size="20" readonly class="field"></p>
+            </form>
+        </div>
+        <form action="#" name="findRoots" id = "findRoots" >
+        <label>inf = <input type="text" name="inf" size="2" pattern="\-?\d+(,\d+)?" class="field_ab"></label>
+        <label>sup = <input type="text" name="sup" size="2" pattern="\-?\d+(,\d+)?" class="field_ab"></label>
+        <label>eps = <input type="text" name="eps" size="2" pattern="\-?\d+(,\d+)?" class="field_ab"></label>
+        <p style="margin-top: 25px;"> y = <input type="text" name="y" size="20" style="margin-bottom: 20px;" class="field"></p>
+        <p style="margin-bottom: 10px;">
+            <input type="button" value="Найти" id="btnFindRoots" name="btnFindRoots" class="btnCalculate"
+                   onclick='
+                           document.findRoots.result.value =
+                            findRoot(document.findRoots.y.value, document.findRoots.inf.value, document.findRoots.sup.value, document.findRoots.eps.value);
+                            draw_graphFR(bringStr(document.findRoots.y.value), document.findRoots.inf.value, document.findRoots.sup.value, Number(document.scaleForm.scale.value),
+                            Number(document.scaleForm.centerX.value), Number(document.scaleForm.centerY.value));
+                            document.scaleForm.lastBtn.value = 1;
+                            '>
+            <input type="text" name="result" readonly class="field">
+        </p>
+    </form>
+
+        <canvas id ="graph" class="graphStyle" width="500" height="500"
+                onmousedown="document.scaleForm.mousePressed.value = +1;
+                             document.scaleForm.mouseX.value = event.clientX;
+                             document.scaleForm.mouseY.value = event.clientY;
+                             "
+                onmouseup="document.scaleForm.mousePressed.value = +0"
+                onmousemove="if(document.scaleForm.mousePressed.value == 1){
+                                var deltaX = document.scaleForm.mouseX.value - event.clientX;
+                                var deltaY = document.scaleForm.mouseY.value - event.clientY;
+                                document.scaleForm.centerX.value = document.scaleForm.centerX.value - deltaX;
+                                document.scaleForm.centerY.value = document.scaleForm.centerY.value - deltaY;
+                                document.scaleForm.mouseX.value = event.clientX;
+                                document.scaleForm.mouseY.value = event.clientY;
+                                document.scaleForm.scale.onchange();
+                             }
+                             "></canvas>
+
+        <form action="#" name="scaleForm" id="scaleForm" class="graphStyle" style="visibility: hidden;">
+            <input type="number" name="lastBtn" value="0" style="visibility: hidden;">
+            <input type="number" name="centerX" value="250" style="visibility: hidden;">
+            <input type="number" name="centerY" value="250" style="visibility: hidden;">
+            <input type="number" name="mouseX" value="0" style="visibility: hidden;">
+            <input type="number" name="mouseY" value="0" style="visibility: hidden;">
+            <input type="number" name="mousePressed" value="0" style="visibility: hidden;">
+            <br>
+            <input type="number" name="scale" value="25" style="visibility: inherit;"
+                                  onchange="
+                                      if(document.scaleForm.lastBtn.value==0){
+                                        draw_grid(Number(document.scaleForm.scale.value),
+                                         Number(document.scaleForm.centerX.value), Number(document.scaleForm.centerY.value));
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==1){
+                                        document.findRoots.btnFindRoots.onclick();
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==2){
+                                        document.integralForm.btnIntegral.onclick();
+                                      }
+                                      else if(document.scaleForm.lastBtn.value==3){
+                                        document.splines.btnSplines.onclick();
+                                      }
+                                        ">
+        </form>
+        <form action="#" name="splines" id="splines">
+            <label>x[ ] = <input type="text" name="xArr" size="20" pattern="\-?\d+(,\d+)?" class="field"></label>
+            <br>
+            <div style="margin-top: 10px; ">
+                <label>y[ ] = <input type="text" name="yArr" size="20" pattern="\-?\d+(,\d+)?"class="field"></label>
+            </div>
+            <br>
+            <p style="margin-top: 10px;: ">
+                <label>valueX = <input type="text" name="valueX" size="2" pattern="\d+(,\d+)?" class="field_ab"></label>
+                <input type="button" value="Найти" name="btnSplines" class="btnCalculate"
+                       onclick='
+                           x = eval("["+document.splines.xArr.value+"]");
+                           y = eval("["+document.splines.yArr.value+"]");;
+                           document.splines.res.value = (~~(Interpolate(document.splines.valueX.value, x, y)/0.01))/100;
+                           draw_graphInterpolate(x, y, Number(document.scaleForm.scale.value),
+                           Number(document.scaleForm.centerX.value), Number(document.scaleForm.centerY.value));
+                           document.scaleForm.lastBtn.value = 3;
+                           '></p>
+            <p><label>result = <input type="text" name="res" readonly class="field"></label></p>
+        </form>
+
+        <script>draw_grid(25, Number(document.scaleForm.centerX.value), Number(document.scaleForm.centerY.value));
+        document.getElementById('intBtn').classList.add('checked');</script>
+
+        <script>
+            var elem = document.getElementById('graph');
+
+            if (elem.addEventListener) {
+                if ('onwheel' in document) {
+                    // IE9+, FF17+
+                    elem.addEventListener("wheel", onWheel);
+                } else if ('onmousewheel' in document) {
+                    // устаревший вариант события
+                    elem.addEventListener("mousewheel", onWheel);
+                } else {
+                    // Firefox < 17
+                    elem.addEventListener("MozMousePixelScroll", onWheel);
+                }
+            } else { // IE8-
+                elem.attachEvent("onmousewheel", onWheel);
+            }
+
+
+            // Это решение предусматривает поддержку IE8-
+            function onWheel(e) {
+                e = e || window.event;
+
+                // deltaY, detail содержат пиксели
+                // wheelDelta не дает возможность узнать количество пикселей
+                // onwheel || MozMousePixelScroll || onmousewheel
+                var delta = e.deltaY || e.detail || e.wheelDelta;
+
+                var info = +document.scaleForm.scale.value;
+                //if((+info + delta/10) > 1)
+                document.scaleForm.scale.value = +info + delta/10;
+                if(document.scaleForm.scale.value < 1){
+                    document.scaleForm.scale.value = 1;
+                }
+
+                document.scaleForm.scale.onchange();
+
+                e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+            }
+        </script>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+@font-face {
+    font-family: TT Drugs; /* ��������� ������ */
+    src: url(fonts/TTDrugs-Thin.otf); /* ���� � ����� �� ������� */
+}
+body{
+    margin: 0;
+}
+input:focus{
+    outline: none;
+}
+.background{
+    background: url("images/pattern2.png");
+    background-size: 100% 100%;
+    height: 100vh;
+}
+.main{
+    position: absolute;
+    border: 1px solid #be3435;
+    margin: 2% 3%;
+    height: 91vh;
+    width: 94%;
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+    text-align: center;
+}
+#left{
+    position: absolute;
+    margin: 0 0 0 0;
+    border-bottom: 1px solid #be3435;
+    border-right: 1px solid #be3435;
+    width: 33%;
+    height: 50px;
+    float: left;
+}
+#center{
+    position: absolute;
+    margin: 0 0 0 33%;
+    border-bottom: 1px solid #be3435;
+    border-right: 1px solid #be3435;
+    width: 33%;
+    height: 50px;
+    //background: #be3435;
+    color: #f9c5c6;
+}
+#right{
+    position: absolute;
+    margin: 0 0 0 66%;
+    border-bottom: 1px solid #be3435;
+    width: 34%;
+    height: 50px;
+    //float: right;
+}
+.btn{
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: #be3435;
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+    font-size: 24pt;
+
+}
+.btn.checked{
+    color: #f9c5c6;
+    transition-duration: 2s;
+}
+.btn.unchecked{
+    color: #be3435;
+    transition-duration: 2s;
+}
+#checkedBtn{
+    position: absolute;
+    margin: 0 0 0 0;
+    width: 33%;
+    height: 50px;
+    background: #be3435;
+}
+#checkedBtn.animatedCenter{
+    margin: 0 0 0 33%;
+    transition-duration: 2s;
+}
+#checkedBtn.animatedLeft{
+    margin: 0 0 0 0;
+    transition-duration: 2s;
+}
+#checkedBtn.animatedRight{
+    width: 34%;
+    margin: 0 0 0 66%;
+    transition-duration: 2s;
+}
+.graphStyle{
+    position: absolute;
+    margin: 5.5% 0 0 7%;
+    background: white;
+}
+#integral{
+    position: absolute;
+    margin: 100px;
+    margin-top: 120px;
+    text-align: left;
+    color: #be3435;
+    font-size: 24pt;
+
+}
+#integral.checked{
+    visibility: inherit;
+    //transition: 2s;
+}
+#integral.unchecked{
+    visibility: hidden;
+    //transition: 2s;
+}
+.field_ab {
+    background: none;
+    border: 1px solid #be3435;
+    border-radius: 3px;
+    margin-left: 15px;
+    height: 50px;
+    font-size: 24pt;
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+    color: #be3435;
+}
+.field {
+    background: none;
+    border: 1px solid #be3435;
+    border-radius: 3px;
+    height: 50px;
+    font-size: 24pt;
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+    color: #be3435;
+}
+.btnCalculate{
+    background: #be3435;
+    color: #f9c5c6;
+    border: 1px solid #be3435;
+    border-radius: 3px;
+    height: 50px;
+    font-size: 24pt;
+    font-family: TT Drugs, 'Comic Sans MS', cursive;
+}
+#findRoots{
+    visibility: hidden;
+    position: absolute;
+    margin: 100px;
+    margin-top: 150px;
+    text-align: left;
+    color: #be3435;
+    font-size: 24pt;
+}
+#findRoots.checked{
+    visibility: inherit;
+    //transition-duration: 2s;
+}
+#findRoots.unchecked{
+    visibility: hidden;
+    //transition-duration: 2s;
+}
+#splines{
+    visibility: hidden;
+    position: absolute;
+    margin: 100px;
+    margin-top: 150px;
+    text-align: left;
+    color: #be3435;
+    font-size: 24pt;
+}
+#splines.checked{
+    visibility: inherit;
+//transition-duration: 2s;
+}
+#splines.unchecked{
+    visibility: hidden;
+//transition-duration: 2s;
+}
